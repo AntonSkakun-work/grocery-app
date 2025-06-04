@@ -43,7 +43,7 @@ export const groceryApi = {
   },
 
   // Delete a grocery item
-  deleteGroceryItem: async (id: number): Promise<void> => {
+  deleteGroceryItem: async (id: string): Promise<void> => {
     const response = await fetch(`${API_BASE_URL}/groceryItems/${id}`, {
       method: 'DELETE',
     });

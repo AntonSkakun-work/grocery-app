@@ -43,7 +43,7 @@ export const useDeleteGroceryItem = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id: number) => groceryApi.deleteGroceryItem(id),
+    mutationFn: (id: string) => groceryApi.deleteGroceryItem(id),
     onSuccess: (_, id) => {
       const cachedGroceryItems = queryClient.getQueryData<GroceryItem[]>(QUERY_KEYS.groceryItems);
       const updatedGroceryItems = cachedGroceryItems?.filter((item) => item.id !== id);

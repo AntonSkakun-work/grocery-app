@@ -1,19 +1,12 @@
 export interface GroceryItem {
-  id: number;
+  id: string;
   title: string;
   amount: string;
   bought: boolean;
 }
 
-export interface CreateGroceryItem {
-  title: string;
-  amount: string;
-  bought?: boolean;
-}
+export type CreateGroceryItem = Omit<GroceryItem, 'id'> 
 
-export interface UpdateGroceryItem {
-  id: number;
-  title?: string;
-  amount?: string;
-  bought?: boolean;
-} 
+export type UpdateGroceryItem = Partial<GroceryItem> & {
+  id: string;
+};
