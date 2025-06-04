@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { groceryApi } from '../services/api';
-import type { CreateGroceryItem, UpdateGroceryItem } from '../types/grocery';
+import type { CreateGroceryItem, GroceryItem, UpdateGroceryItem } from '../types/grocery';
 
 const QUERY_KEYS = {
   groceryItems: ['groceryItems'],
@@ -29,8 +29,12 @@ export const useUpdateGroceryItem = () => {
 
   return useMutation({
     mutationFn: (item: UpdateGroceryItem) => groceryApi.updateGroceryItem(item),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.groceryItems });
+    onSuccess: (updatedItem) => {
+      const cachedGroceryItems = queryClient.getQueryData<GroceryItem[]>(QUERY_KEYS.groceryItems);
+      const updatedGroceryItems = cachedGroceryItems?.map((groceryItem) =>
+        groceryItem.id === updatedItem.id ? updatedItem : groceryItem
+      );
+      queryClient.setQueryData(QUERY_KEYS.groceryItems, updatedGroceryItems);
     },
   });
 };
@@ -40,8 +44,10 @@ export const useDeleteGroceryItem = () => {
 
   return useMutation({
     mutationFn: (id: number) => groceryApi.deleteGroceryItem(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.groceryItems });
+    onSuccess: (_, id) => {
+      const cachedGroceryItems = queryClient.getQueryData<GroceryItem[]>(QUERY_KEYS.groceryItems);
+      const updatedGroceryItems = cachedGroceryItems?.filter((item) => item.id !== id);
+      queryClient.setQueryData(QUERY_KEYS.groceryItems, updatedGroceryItems);
     },
   });
 }; 
