@@ -4,8 +4,10 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Checkbox } from './ui/checkbox';
 import { Card, CardContent } from './ui/card';
+import { UnitSelect } from './UnitSelect';
 import { useUpdateGroceryItem, useDeleteGroceryItem } from '../hooks/useGrocery';
 import type { GroceryItem as GroceryItemType } from '../types/grocery';
+import { GroceryUnit, UNIT_LABELS } from '../constants/units';
 
 interface GroceryItemProps {
   item: GroceryItemType;
@@ -14,23 +16,30 @@ interface GroceryItemProps {
 export const GroceryItem = ({ item }: GroceryItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(item.title);
-  const [editAmount, setEditAmount] = useState(item.amount);
+  const [editAmount, setEditAmount] = useState(item.amount.toString());
+  const [editUnit, setEditUnit] = useState<GroceryUnit>(item.unit);
 
   const updateGroceryItem = useUpdateGroceryItem();
   const deleteGroceryItem = useDeleteGroceryItem();
 
   const handleSave = () => {
-    updateGroceryItem.mutate({
-      id: item.id,
-      title: editTitle,
-      amount: editAmount,
-    });
-    setIsEditing(false);
+    const numericAmount = parseFloat(editAmount);
+    
+    if (!isNaN(numericAmount) && numericAmount > 0) {
+      updateGroceryItem.mutate({
+        id: item.id,
+        title: editTitle,
+        amount: numericAmount,
+        unit: editUnit,
+      });
+      setIsEditing(false);
+    }
   };
 
   const handleCancel = () => {
     setEditTitle(item.title);
-    setEditAmount(item.amount);
+    setEditAmount(item.amount.toString());
+    setEditUnit(item.unit);
     setIsEditing(false);
   };
 
@@ -64,12 +73,22 @@ export const GroceryItem = ({ item }: GroceryItemProps) => {
                   placeholder="Item name"
                   className="w-full"
                 />
-                <Input
-                  value={editAmount}
-                  onChange={(e) => setEditAmount(e.target.value)}
-                  placeholder="Amount"
-                  className="w-full"
-                />
+                <div className="grid grid-cols-2 gap-2">
+                  <Input
+                    type="number"
+                    value={editAmount}
+                    onChange={(e) => setEditAmount(e.target.value)}
+                    placeholder="Amount"
+                    min="0.1"
+                    step="0.1"
+                    className="w-full"
+                  />
+                  <UnitSelect
+                    value={editUnit}
+                    onValueChange={setEditUnit}
+                    className="w-full"
+                  />
+                </div>
               </div>
             ) : (
               <div>
@@ -83,7 +102,7 @@ export const GroceryItem = ({ item }: GroceryItemProps) => {
                 <p className={`text-sm text-muted-foreground ${
                   item.bought ? 'line-through' : ''
                 }`}>
-                  {item.amount}
+                  {item.amount} {UNIT_LABELS[item.unit]}
                 </p>
               </div>
             )}

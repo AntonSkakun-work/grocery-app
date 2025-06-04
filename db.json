@@ -3,25 +3,29 @@
     {
       "id": "1",
       "title": "Milk",
-      "amount": "1 gallon",
-      "bought": true
+      "amount": 1,
+      "unit": "gallon",
+      "bought": false
     },
     {
       "id": "3",
       "title": "Eggs",
-      "amount": "12 count",
-      "bought": true
+      "amount": 12,
+      "unit": "pieces",
+      "bought": false
     },
     {
       "id": "8c1c",
       "title": "Some new Item",
-      "amount": "2 kg",
+      "amount": 2,
+      "unit": "kg",
       "bought": true
     },
     {
       "id": "2f16",
       "title": "Item",
-      "amount": "2 kg",
+      "amount": 2,
+      "unit": "kg",
       "bought": true
     }
   ]
