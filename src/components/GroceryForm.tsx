@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { UnitSelect } from './UnitSelect';
-import { useCreateGroceryItem } from '../hooks/useGrocery';
-import { GroceryUnit, DEFAULT_UNIT } from '../constants/units';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { UnitSelect } from '@/components/UnitSelect';
+import { useCreateGroceryItem } from '@/hooks/useCreateGroceryItem';
+import { GroceryUnit, DEFAULT_UNIT } from '@/constants/units';
 
 export const GroceryForm = () => {
   const [title, setTitle] = useState('');

@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Pencil, Trash2, Save, X } from 'lucide-react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Checkbox } from './ui/checkbox';
-import { Card, CardContent } from './ui/card';
-import { UnitSelect } from './UnitSelect';
-import { useUpdateGroceryItem, useDeleteGroceryItem } from '../hooks/useGrocery';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Card, CardContent } from '@/components/ui/card';
+import { UnitSelect } from '@/components/UnitSelect';
+import { useUpdateGroceryItem } from '@/hooks/useUpdateGroceryItem';
+import { useDeleteGroceryItem } from '@/hooks/useDeleteGroceryItem';
 import type { GroceryItem as GroceryItemType } from '../types/grocery';
-import { GroceryUnit, UNIT_LABELS } from '../constants/units';
+import { GroceryUnit, UNIT_LABELS } from '@/constants/units';
 
 interface GroceryItemProps {
   item: GroceryItemType;

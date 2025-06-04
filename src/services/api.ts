@@ -1,5 +1,5 @@
 import { env } from '@/config/env';
-import type { GroceryItem, CreateGroceryItem, UpdateGroceryItem } from '../types/grocery';
+import type { GroceryItem, CreateGroceryItem, UpdateGroceryItem } from '@/types/grocery';
 
 const API_BASE_URL = env.apiBaseUrl;
 

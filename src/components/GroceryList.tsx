@@ -1,8 +1,8 @@
 import { ShoppingCart, AlertCircle } from 'lucide-react';
-import { GroceryItem } from './GroceryItem';
-import { GroceryForm } from './GroceryForm';
-import { Button } from './ui/button';
-import { useGroceryItems } from '../hooks/useGrocery';
+import { GroceryItem } from '@/components/GroceryItem';
+import { GroceryForm } from '@/components/GroceryForm';
+import { Button } from '@/components/ui/button';
+import { useGroceryItems } from '@/hooks/useGroceryItems';
 
 export const GroceryList = () => {
   const { data: groceryItems, isLoading, isError, error, refetch } = useGroceryItems();

@@ -1,4 +1,4 @@
-import { GroceryUnit } from "../constants/units";
+import { GroceryUnit } from "@/constants/units";
 
 export interface GroceryItem {
   id: string;

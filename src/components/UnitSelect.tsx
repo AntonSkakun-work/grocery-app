@@ -1,5 +1,5 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { GroceryUnit, UNIT_LABELS, UNIT_GROUPS } from '../constants/units';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { GroceryUnit, UNIT_LABELS, UNIT_GROUPS } from '@/constants/units';
 
 interface UnitSelectProps {
   value: GroceryUnit;
