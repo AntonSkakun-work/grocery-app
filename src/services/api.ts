@@ -1,6 +1,7 @@
+import { env } from '@/config/env';
 import type { GroceryItem, CreateGroceryItem, UpdateGroceryItem } from '../types/grocery';
 
-const API_BASE_URL = 'http://localhost:3002';
+const API_BASE_URL = env.apiBaseUrl;
 
 export const groceryApi = {
   // Get all grocery items
