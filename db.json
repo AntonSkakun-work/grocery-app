@@ -1,0 +1,28 @@
+{
+  "groceryItems": [
+    {
+      "id": "1",
+      "title": "Milk",
+      "amount": "1 gallon",
+      "bought": true
+    },
+    {
+      "id": "3",
+      "title": "Eggs",
+      "amount": "12 count",
+      "bought": true
+    },
+    {
+      "id": "8c1c",
+      "title": "Some new Item",
+      "amount": "2 kg",
+      "bought": true
+    },
+    {
+      "id": "2f16",
+      "title": "Item",
+      "amount": "2 kg",
+      "bought": true
+    }
+  ]
+}
